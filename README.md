@@ -10,6 +10,17 @@ MassTransit types or other dependencies of its own.
 Part of the [RustArchon](https://github.com/RustArchon/RustArchon) system - see that repo for the
 full architecture and how to run the whole stack locally or via Docker Compose.
 
+## Key files
+
+- `Contracts/ConnectToServer.cs`, `ServerLifecycleChanged.cs`, `ServerConnectionHeartbeat.cs` - the
+  worker-ownership/claim mechanism's messages (see `RustArchon.Worker`'s `ConnectionSupervisor`).
+- `Contracts/RconFrameCaptured.cs`, `ConnectionStatusChanged.cs` - what a live connection actually
+  publishes as it captures console/chat activity.
+- `Contracts/SendRconCommand.cs` - the request/response contract for dispatching a command to
+  whichever Worker instance currently owns a server's connection.
+- `Contracts/EmailRequested.cs` - the queued-email contract (`RustArchon.Panel` → `RustArchon.Api` →
+  `RustArchon.Worker`).
+
 ## License
 
 AGPL-3.0-or-later - see [`LICENSE`](LICENSE). See [`NOTICE.md`](NOTICE.md) for how this project
