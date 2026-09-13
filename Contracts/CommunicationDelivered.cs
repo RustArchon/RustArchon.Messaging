@@ -15,4 +15,13 @@ namespace RustArchon.Messaging.Contracts;
 /// <see cref="EmailRequested.MessageId"/> it answers, which is itself the <c>Communication</c> row's
 /// own id - see that record's remarks.
 /// </remarks>
-public record CommunicationDelivered(Guid CommunicationId, bool Success, string? Error);
+/// <param name="Suppressed">
+/// True when the sending Worker instance had <c>RUSTARCHON_SUPPRESS_EMAIL_DELIVERY</c> set - nothing
+/// was actually sent, deliberately, regardless of <paramref name="Success"/>. Checked first by
+/// <c>CommunicationDeliveredConsumer</c>, which moves the row to a distinct
+/// <c>CommunicationStatus.Suppressed</c> rather than <c>Sent</c> - the row and its full body were still
+/// queued and saved normally either way; only the delivery attempt itself was skipped. See
+/// <c>SuppressedEmailDeliveryProvider</c>'s remarks for why this needs to be told apart from an
+/// ordinary successful send.
+/// </param>
+public record CommunicationDelivered(Guid CommunicationId, bool Success, string? Error, bool Suppressed);
