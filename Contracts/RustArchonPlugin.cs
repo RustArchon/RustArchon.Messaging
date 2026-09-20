@@ -44,6 +44,13 @@ public static class RustArchonPlugin
     public const string MapUploadTokenHeader = "X-RustArchon-Upload-Token";
 
     /// <summary>
+    /// The header the Updater's plugin download carries its one-time token in (from Updater 0.3.0). Same reasoning as
+    /// <see cref="MapUploadTokenHeader"/>: not in the address, so no access log or proxy keeps it. Updaters before 0.3.0 put the token
+    /// in the address, and that form is still served.
+    /// </summary>
+    public const string UpdateTokenHeader = "X-RustArchon-Update-Token";
+
+    /// <summary>
     /// Whether a list of plugin names positively shows the RustArchon plugin loaded. Exact name, ignoring case:
     /// a lookalike such as "RustArchonHelper" does not count.
     /// </summary>
