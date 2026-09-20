@@ -37,6 +37,9 @@ public static class RustArchonPlugin
     /// <summary>The plugin can draw and report the world map (<c>archon.map.status</c>, <c>.render</c>, <c>.monuments</c>, <c>.upload</c>).</summary>
     public const string MapCapability = "map";
 
+    /// <summary>The plugin keeps the update notices UpdateChecker reports and hands them over (<c>archon.updates</c>).</summary>
+    public const string UpdatesCapability = "updates";
+
     /// <summary>
     /// The header a game server's map upload carries its one-time token in. In a header rather than the address so the token is
     /// not recorded wherever addresses are (access logs, proxies, history); the address names only the server.
