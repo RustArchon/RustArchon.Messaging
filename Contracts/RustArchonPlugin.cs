@@ -41,6 +41,13 @@ public static class RustArchonPlugin
     public const string UpdatesCapability = "updates";
 
     /// <summary>
+    /// The plugin can install, replace and roll back the Updater plugin itself (<c>archon.updater.update</c>). The Updater can never
+    /// replace itself, since a failed one has nothing left to recover it; the main plugin is its way back, and the Updater is the main
+    /// plugin's. Without this capability the Updater still has to be installed by hand.
+    /// </summary>
+    public const string UpdaterUpdateCapability = "updater-update";
+
+    /// <summary>
     /// The header a game server's map upload carries its one-time token in. In a header rather than the address so the token is
     /// not recorded wherever addresses are (access logs, proxies, history); the address names only the server.
     /// </summary>
