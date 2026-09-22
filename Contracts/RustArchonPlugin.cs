@@ -48,6 +48,20 @@ public static class RustArchonPlugin
     public const string UpdaterUpdateCapability = "updater-update";
 
     /// <summary>
+    /// The plugin can apply a newer version of another plugin that is already installed (<c>archon.thirdparty.update</c> and <c>.status</c>): it
+    /// downloads its own copy, applies it only if it is the file the Panel checked, keeps the old one as a backup and puts it back if the new one does
+    /// not load. Without this capability nothing is applied to third-party plugins on that server.
+    /// </summary>
+    public const string ThirdPartyUpdateCapability = "thirdparty-update";
+
+    /// <summary>
+    /// The plugin can also apply an update that is a zip archive, following a person's folder rules (<c>archon.thirdparty.zip</c>). Listed only when the
+    /// server's own runtime can actually read zip files, which the plugin checks when it starts: the reader is loaded by name at run time, so a server
+    /// that lacks it costs nothing but this capability. Without it a zip update is never sent to that server.
+    /// </summary>
+    public const string ThirdPartyZipCapability = "thirdparty-zip";
+
+    /// <summary>
     /// The header a game server's map upload carries its one-time token in. In a header rather than the address so the token is
     /// not recorded wherever addresses are (access logs, proxies, history); the address names only the server.
     /// </summary>
